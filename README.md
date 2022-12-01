@@ -3,6 +3,9 @@
 ## Table of Contents
 
 - [VPC Setup](#vpc-setup)
+- [Creating Droplets](#creating-droplets)
+- [Load Balancer Setup](#load-balancer-setup)
+
 
 ## VPC Setup
 
@@ -48,8 +51,37 @@ If done successfully, 2 droplets should have been generated with the tag "Web" a
 
 ![generated droplets](images/ss3.png)
 
+## Load Balancer Setup
 
+1. Click on "Networking" then "Create Load Balancer" then "Create Load Balancer"
 
+- Note: All the settings will be set to default if not specified in the instructions below.
+
+2. Select the region that the droplets have been created in.
+
+3. Change the VPC network to the VPC network that you had created in the VPC Setup instructions.
+
+4. Under "Connect Droplets" type in "Web".
+
+- **Note:** Once you have entered "Web", it should display that there is 2 droplets similar to the image below.
+
+![connect droplets](images/ss4.png)
+
+5. Under "Forwarding Rules", make sure that the settings match the image below.
+
+![forwarding rules](images/ss5.png)
+
+6. The name of the load balancer can be set to anything. I will be keeping it as the default name.
+
+7. Click on "Create Load Balancer".
+
+If done successfully, you should be able to view the load balancer under "Load Balancers" in "Networking". Your screen should display something similar to the image below.
+
+![verify load balancer](images/ss6.png)
+
+8. Verify that the droplets that you created are also displayed once clicking on the load balancer.
+
+![verify load balancer droplets](images/ss7.png)
 
 
 
