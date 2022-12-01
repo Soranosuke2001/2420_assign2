@@ -8,6 +8,10 @@
 - [Firewall Setup](#firewall-setup)
 - [Create User](#create-user)
 - [Installing Caddy](#installing-caddy)
+- [Writing the Web App](#writing-the-web-app)
+- [Installing Volta](#installing-volta)
+- [Installing Node](#installing-node)
+- [Getting Started with Node](#getting-started-with-node)
 
 ## VPC Setup
 
@@ -192,6 +196,111 @@ You have successfully created a new user and installed the latest updates.
 5. Copy the `caddy` file to the `/usr/bin/` directory by using `sudo cp caddy /usr/bin/` command.
 
 6. Verify that the file exists in the `/usr/bin/` directory.
+
+You have successfully installed the Caddy web server.
+
+## Writing the Web App
+
+- Note: All of the steps below will be completed in the local terminal. DO NOT use server-one and server-two.
+
+1. Create the main directory in using the `mkdir 2420-assign-two`. The folder name does not have to match.
+
+2. Inside the directory we just created, create two more directories by using the `mkdir /2420-assign-two/src/ && mkdir /2420-assign-two/html/` command.
+
+3. Inside the html directory, use the `vim index.html` command to create and edit the index.html file.
+
+4. Add the following contents to the index.html file.
+
+- Note: The contents between the two body tags can be altered to your preference.
+
+	```
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+    		<meta charset="UTF-8">
+    		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    		<title>Document</title>
+	</head>
+	<body>
+    		<h1>ACIT 2420 Assignment 2</h1>
+    		<p>Welcome to the webpage!</p>
+    		<p>Enjoy your stay</p>
+	</body>
+	</html>
+	```
+
+## Installing Volta
+
+1. Run the command, `curl https://get.volta.sh | bash` to begin installing Volta.
+
+![installing volta](images/ss19.png)
+
+## Installing Node
+
+1. Run the command, `volta install node` to being installing node.
+
+![installing node](images/ss20.png)
+
+## Getting Started with Node
+
+1. Inside the src directory, create a new node project by running the `npm init` command.
+
+- Note: When prompted for anything, you can just press the Enter key. The command output should look similar to the image below.
+
+![npm init](images/ss17.png)
+
+2. Install the fastify module by running the `npm i fastify` in the src directory.
+
+- Note: If the installation was successful, then there should be 0 vulnerabilities returned in the output as shown in the image below.
+
+![nim i fastify](images/ss18.png)
+
+3. Inside the src directory, use the `vim index.js` command to create and edit the index.js file.
+
+4. Add the following contents to the index.js file.
+
+	```
+	// Require the framework and instantiate it
+	const fastify = require('fastify')({ logger: true })
+
+	// Declare a route
+	fastify.get('/api', async (request, reply) => {
+  		return { hello: 'Server x' }
+	})
+
+	// Run the server!
+	const start = async () => {
+  		try {
+    			await fastify.listen(5050)
+  		} catch (err) {
+    			fastify.log.error(err)
+    			process.exit(1)
+  			}
+		}
+	start()
+	```
+
+5. Verify that you have setup correctly by running the command, `node index.js`. You output should be similar to the image below.
+
+![node index.js](images/ss21.png)
+
+6. In a browser, type in the http link that was returned in the output. In my case it would be `http://127.0.0.1:5050`.
+
+- **Note:** This will display an error since we did not configure a route for "/", but if we typed in `http://127.0.0.1:5050/api` the webpage should display "{ hello: 'Server x' }.
+
+![/api](images/ss22.png)
+
+ 
+
+
+
+
+
+
+
+
+
 
 
 
