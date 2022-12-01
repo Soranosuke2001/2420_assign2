@@ -263,21 +263,23 @@ You have successfully installed the Caddy web server.
 	```
 	// Require the framework and instantiate it
 	const fastify = require('fastify')({ logger: true })
+	const fs = require("fs")
 
 	// Declare a route
 	fastify.get('/api', async (request, reply) => {
-  		return { hello: 'Server x' }
+        	const readStream = fs.createReadStream('../html/index.html')
+        	await reply.type('text/html').send(readStream)
 	})
 
 	// Run the server!
 	const start = async () => {
-  		try {
-    			await fastify.listen(5050)
-  		} catch (err) {
-    			fastify.log.error(err)
-    			process.exit(1)
-  			}
-		}
+        	try {
+                	await fastify.listen(5050)
+        	} catch (err) {
+                	fastify.log.error(err)
+                	process.exit(1)
+        	}
+	}
 	start()
 	```
 
@@ -291,8 +293,42 @@ You have successfully installed the Caddy web server.
 
 ![/api](images/ss22.png)
 
- 
+---
 
+## Copying Files
+
+- Note: Both the html and src directories must be copied to server-one and server-two.
+
+1. Create the directory, `www` in the `/var` directory by using the command, `sudo mkdir www`.
+
+2. Run the command, `rsync -aPv -e "ssh -i ~/.ssh/DO_server_key" ./src ./html sora@64.227.110.206:~` to save the src and html directory in the home directory of the user.
+
+3. Verify that both html and src directories exist in the ome directories for both server-one and server-two.
+
+4. Move both directories to `/var/www` by using the `sudo mv ./src ./html -t /var/www` command.
+
+5. Verify that the contents have been moved to the correct directory. Also note that the ownership of the directories is your username and not the root user.
+
+![moving directories](images/ss24.png)
+
+---
+
+## Creating the CaddyFile
+
+- Note: All the steps below must be completed in both server-one and server-two.
+
+1. Create the Caddyfile in the /etc/caddy directory by running the command, `sudo vim /etc/caddy/Caddyfile`.
+
+2. Add the following contents to the Caddyfile.
+
+	```
+	root * /var/www
+	reverse_proxy /api 143.244.211.3 
+	file_server
+	http:/127.0.0.1:5050
+	```
+
+3. 
 
 
 

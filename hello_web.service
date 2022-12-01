@@ -1,0 +1,12 @@
+[Unit]
+Description=Running the node application
+After=network.target
+
+[Service]
+Type=simple
+User=sora
+ExecStart=/home/sora/.volta/bin/node /var/www/src/index.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
