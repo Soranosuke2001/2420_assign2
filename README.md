@@ -18,6 +18,38 @@
 
 ![viewing created VPC](images/ss1.png)
 
+## Creating Droplets
+
+- Note: Before beginning, you will need to have a custom SSH key generated and added to DigitalOcean.
+
+1. Create a new Droplet on DigitalOcean
+
+- Note: All the settings will be set to default if not specified in the instructions below.
+
+2. Set the VPC network to the VPC network you had just created.
+
+![droplet vpc setting](images/ss2.png)
+
+3. CPU option can be set to anything. I will be using the cheapest option.
+
+4. Set the SSH key a key that is added to DigitalOcean.
+
+5. Set the number of droplets to 2.
+
+6. Set the name of one droplet to "server-one".
+
+7. Set the name of the other droplet to "server-two".
+
+8. Add the tag "Web".
+
+9. Click on "Create Droplet".
+
+If done successfully, 2 droplets should have been generated with the tag "Web" and its names set to "server-one" and "server-two"
+
+![generated droplets](images/ss3.png)
+
+
+
 
 
 
