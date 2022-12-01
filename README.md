@@ -6,6 +6,7 @@
 - [Creating Droplets](#creating-droplets)
 - [Load Balancer Setup](#load-balancer-setup)
 - [Firewall Setup](#firewall-setup)
+- [Create User](#create-user)
 
 ## VPC Setup
 
@@ -110,6 +111,51 @@ If done successfully, you should be able to view the load balancer under "Load B
 8. Verify that the 2 droplets created previously are also under "Droplets" after clicking on the name of the firewall.
 
 ![verify droplets under firewall](images/ss10.png)
+
+## Create User
+
+- Note: Follow the following steps in server-one and server-two. I will also be setting the username for both servers to be the same.
+
+1. SSH into server-one by using the `ssh -i ~/.ssh/DO_server_key root@137.184.116.80`.
+
+- Note: Reminder that the server key filename will be different and the IP address will be different.
+
+2. Add a new user by using the `useradd -ms /bin/bash sora`.
+
+- Note: The username can be set to you preference.
+
+3. Set the password for the new user by using the `passwd sora` command.
+
+4. Copy the ssh file to the new user's gome directory by using the following command:
+
+	```
+	rsync --archive --chown=sora:sora ~/.ssh /home/sora`
+	```
+
+![running the commands from above](images/ss11.png)
+
+5. Verify that the new user's home directory exists in the `/home` directory and the `.ssh` directory exists inside the user's home directory.
+
+![verify new user](images/ss12.png)
+
+6. SSH into the new user by using the `ssh -i ~/.ssh/DO_server_key sora@137.184.116.80` command.
+
+7. Open the `sshd_config` file by using the `sudo vim /etc/ssh/sshd_config` command.
+
+8. Change the "PermitRootLogin yes" to "PermitRootLogin no" then save the file.
+
+![change root ssh permission](images/ss13.png)
+
+9. Use the `sudo systemctl restart ssh` command to apply the ssh config.
+
+If done correctly, you should not be able to SSH into the root user from your local terminal.
+
+
+
+
+
+
+
 
 
 
