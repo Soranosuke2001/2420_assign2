@@ -5,7 +5,7 @@
 - [VPC Setup](#vpc-setup)
 - [Creating Droplets](#creating-droplets)
 - [Load Balancer Setup](#load-balancer-setup)
-
+- [Firewall Setup](#firewall-setup)
 
 ## VPC Setup
 
@@ -77,15 +77,39 @@ If done successfully, 2 droplets should have been generated with the tag "Web" a
 
 If done successfully, you should be able to view the load balancer under "Load Balancers" in "Networking". Your screen should display something similar to the image below.
 
+- Note: The status for both the load balancer and the droplets will be set to "down".
+
 ![verify load balancer](images/ss6.png)
 
 8. Verify that the droplets that you created are also displayed once clicking on the load balancer.
 
 ![verify load balancer droplets](images/ss7.png)
 
+## Firewall Setup
 
+1. Click on "Networking" then "Firewalls" then "Create Firewall".
 
+- Note: All the settings will be set to default if not specified in the instructions below.
 
+2. Set the name of the firewall to your preference.
+
+3. Under "Inbound Rules", click on the dropdown for "New Rule" and select HTTP.
+
+4. For the source of the new rule, add the load balancer that you had created. The settings for "Inboud Rules" should be similar to the image below.
+
+![inbound rules](images/ss8.png)
+
+5. Under "Apply to Droplets", add the tag "Web".
+
+6. Click "Create Firewall"
+
+7. Verify that the firewall now exists under "Firewalls" in "Networking".
+
+![verify firewall existence](images/ss9.png)
+
+8. Verify that the 2 droplets created previously are also under "Droplets" after clicking on the name of the firewall.
+
+![verify droplets under firewall](images/ss10.png)
 
 
 
