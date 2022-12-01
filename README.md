@@ -289,7 +289,7 @@ You have successfully installed the Caddy web server.
 
 6. In a browser, type in the http link that was returned in the output. In my case it would be `http://127.0.0.1:5050`.
 
-- **Note:** This will display an error since we did not configure a route for "/", but if we typed in `http://127.0.0.1:5050/api` the webpage should display "{ hello: 'Server x' }.
+- **Note:** This will display an error since we did not configure a route for "/", but if we typed in `http://127.0.0.1:5050/api` the webpage should display a webpage similar to the image below.
 
 ![/api](images/ss22.png)
 
@@ -311,29 +311,74 @@ You have successfully installed the Caddy web server.
 
 ![moving directories](images/ss24.png)
 
+- **Important Note:** You must complete the node setup procedures in the `/var/www/src` directory. You must also run the `source ~/.bashrc` command in order to apply the changes made.
+
 ---
 
 ## Creating the CaddyFile
 
-- Note: All the steps below must be completed in both server-one and server-two.
+- Create the Caddyfile in your local terminal. We will be moving the files over to server-one and server-two later.
 
-1. Create the Caddyfile in the /etc/caddy directory by running the command, `sudo vim /etc/caddy/Caddyfile`.
+1. To create and edit the Caddyfile, use the `vim Caddyfile` command.
+
+- Note: The 'C' MUST be capitalized.
 
 2. Add the following contents to the Caddyfile.
 
 	```
-	root * /var/www
-	reverse_proxy /api 143.244.211.3 
-	file_server
-	http:/127.0.0.1:5050
+	http://143.244.211.3 {
+        	root * /var/www
+        	reverse_proxy /api localhost:5050
+        	file_server
+	}
 	```
 
-3. 
+3. Move the Caddyfile to the server-one and server-two using the `rsync` command from before.
 
+## Creating the Service Files
 
+- Create the service file in you local terminal. We will be moving the files over to server-one and server-two later.
 
+1. To create and edit the service file, use the `vim hello_web.service` command.
 
+2. Add the following contents to the service file.
 
+	```
+	[Unit]
+	Description=Service file to run the node application
+	After=network.target
+
+	[Service]
+	Type=simple
+	User=sora
+	ExecStart=/home/sora/.volta/bin/node /var/www/src/index.js
+	Restart=on-failure
+
+	[Install]
+	WantedBy=multi-user.target
+	```
+
+3. Create another service file with the filename "caddy.service" by using the `vim caddy.service` command.
+
+4. Add te following contents to the caddy.service file.
+
+	```
+	[Unit]
+	Description=Serve HTML in /var/www using caddy
+	After=network.target
+	
+	[Service]
+	Type=notify
+	ExecStart=/usr/bin/caddy run --config /etc/caddy/Caddyfile
+	ExecReload=/usr/bin/caddy reload --config /etc/caddy/Caddyfile
+	TimeoutStopSec=5
+	KillMode=mixed
+
+	[Install]
+	WantedBy=multi-user.target
+	```
+
+5. Move both service files to both server-one and server-two by using the `rsync` command from before.
 
 
 
