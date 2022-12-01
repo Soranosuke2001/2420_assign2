@@ -7,6 +7,7 @@
 - [Load Balancer Setup](#load-balancer-setup)
 - [Firewall Setup](#firewall-setup)
 - [Create User](#create-user)
+- [Installing Caddy](#installing-caddy)
 
 ## VPC Setup
 
@@ -148,8 +149,49 @@ If done successfully, you should be able to view the load balancer under "Load B
 
 9. Use the `sudo systemctl restart ssh` command to apply the ssh config.
 
-If done correctly, you should not be able to SSH into the root user from your local terminal.
+- Note: If done correctly, you should not be able to SSH into the root user from your local terminal.
 
+10. Check if there are any updates to be installed by using the `sudo apt update` command. If there is, follow to step 11. If not Continue to Installing Caddy.
+
+11. To install the updates, use the `sudo apt upgrade` command.
+
+You have successfully created a new user and installed the latest updates.
+
+## Installing Caddy
+
+- Note: The following steps must be done in both droplets.
+
+1. Download the .tar.gz file for Caddy by running the command below.
+
+- Note: This file cna be installed anywhere in the user's home directory. We will be moving the file to a different directory later.
+
+	```
+	wget https://github.com/caddyserver/caddy/releases/download/v2.6.2/caddy_2.6.2_linux_amd64.tar.gz
+	```
+
+- Note: The output should look something similar to the image below.
+
+![running the command above](images/ss14.png)
+
+2. Unarchive the downloaded file by using the command below.
+
+	```
+	tar xvf caddy_2.6.2_linux_amd64.tar.gz
+	```
+
+- Note: The output of the command should look similar to the image below. And the file should be an executable file.
+
+![unarchive the file](images/ss15.png)
+
+3. Change the ownership of the file to root by using the `sudo chown root: caddy` command.
+
+4. Verify that the ownership change was done so successfully.
+
+![verify caddy ownership](images/ss16.png)
+
+5. Copy the `caddy` file to the `/usr/bin/` directory by using `sudo cp caddy /usr/bin/` command.
+
+6. Verify that the file exists in the `/usr/bin/` directory.
 
 
 
