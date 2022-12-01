@@ -380,6 +380,21 @@ You have successfully installed the Caddy web server.
 
 5. Move both service files to both server-one and server-two by using the `rsync` command from before.
 
+## Moving Files
+
+- Note: The following steps must be completed in both server-one and server-two.
+
+1. Move the caddy.service file and hello_web.service file into the directory, `/etc/systemd/system` by running the command below
+
+	```
+	sudo mv ./caddy.service ./hello_web.service -t /etc/systemd/system
+	```
+
+![moving service files](images/ss25.png)
+
+2. Move the Caddyfile to the `/etc/caddy` directory by using the command, `sudo mv ./Caddyfile /etc/caddy`.
+
+![moving the Caddyfile](images/ss26.png)
 
 
 
