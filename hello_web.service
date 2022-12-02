@@ -5,6 +5,7 @@ After=network.target
 [Service]
 Type=simple
 User=sora
+Group=sora
 ExecStart=/home/sora/.volta/bin/node /var/www/src/index.js
 Restart=on-failure
 

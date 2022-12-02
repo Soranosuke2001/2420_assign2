@@ -1,11 +1,9 @@
 // Require the framework and instantiate it
 const fastify = require('fastify')({ logger: true })
-const fs = require("fs")
 
 // Declare a route
 fastify.get('/api', async (request, reply) => {
-	const readStream = fs.createReadStream('../html/index.html')
-	await reply.type('text/html').send(readStream)
+	return { hello: 'server-x' }
 })
 
 // Run the server!

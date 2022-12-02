@@ -313,6 +313,8 @@ You have successfully installed the Caddy web server.
 
 - **Important Note:** You must complete the node setup procedures in the `/var/www/src` directory. You must also run the `source ~/.bashrc` command in order to apply the changes made.
 
+- Note: You should alter that the index.html slightly between server-one and server-two so that you are able to visually see that the load balancer is working properly.
+
 ---
 
 ## Creating the CaddyFile
@@ -396,7 +398,39 @@ You have successfully installed the Caddy web server.
 
 ![moving the Caddyfile](images/ss26.png)
 
+## Starting the Service Files
 
+- Use the following commands for both server-one and server-two. 
+
+1. Run the following commands below in order. 
+
+	```
+	sudo systemctl daemon-reload
+
+	sudo systemctl start caddy.service
+
+	sudo systemctl enable --now caddy.service
+	```
+
+- Note: Repeat step 1, but instead with the hello_web.service file.
+
+2. Verify that both services are running correctly by using the `sudo systemctl status caddy.service` command.
+
+![systemctl status command](images/ss27.png)
+
+If the steps were completed sucessfully, there can be three possible webpages.
+
+- By visiting [143.244.211.3](143.244.211.3), the webpage will be:
+
+![143.244.211.3](images/ss28.png)
+
+- By vising the [143.244.211.3/api](143.244.211.3/api), the webpage will be:
+
+![143.244.211.3/api](images/ss30.png)
+
+			OR
+
+![143.244.211.3](images/ss29.png)
 
 
 
