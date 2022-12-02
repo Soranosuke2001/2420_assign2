@@ -1,5 +1,11 @@
 # ACIT 2420 Assignment 2
 
+Links:
+
+[143.244.211.3](143.244.211.3)
+
+[143.244.211.3/api](143.244.211.3/api)
+
 ## Table of Contents
 
 - [VPC Setup](#vpc-setup)
@@ -12,6 +18,8 @@
 - [Installing Volta](#installing-volta)
 - [Installing Node](#installing-node)
 - [Getting Started with Node](#getting-started-with-node)
+
+---
 
 ## VPC Setup
 
@@ -26,6 +34,8 @@
 5. If the VPC was created successfully, you should be able to see the VPC under the "VPC" tab after clicking on "Networking".
 
 ![viewing created VPC](images/ss1.png)
+
+---
 
 ## Creating Droplets
 
@@ -56,6 +66,8 @@
 If done successfully, 2 droplets should have been generated with the tag "Web" and its names set to "server-one" and "server-two"
 
 ![generated droplets](images/ss3.png)
+
+---
 
 ## Load Balancer Setup
 
@@ -91,6 +103,8 @@ If done successfully, you should be able to view the load balancer under "Load B
 
 ![verify load balancer droplets](images/ss7.png)
 
+---
+
 ## Firewall Setup
 
 1. Click on "Networking" then "Firewalls" then "Create Firewall".
@@ -116,6 +130,8 @@ If done successfully, you should be able to view the load balancer under "Load B
 8. Verify that the 2 droplets created previously are also under "Droplets" after clicking on the name of the firewall.
 
 ![verify droplets under firewall](images/ss10.png)
+
+---
 
 ## Create User
 
@@ -161,6 +177,8 @@ If done successfully, you should be able to view the load balancer under "Load B
 
 You have successfully created a new user and installed the latest updates.
 
+---
+
 ## Installing Caddy
 
 - Note: The following steps must be done in both droplets.
@@ -199,6 +217,8 @@ You have successfully created a new user and installed the latest updates.
 
 You have successfully installed the Caddy web server.
 
+---
+
 ## Writing the Web App
 
 - Note: All of the steps below will be completed in the local terminal. DO NOT use server-one and server-two.
@@ -230,17 +250,23 @@ You have successfully installed the Caddy web server.
 	</html>
 	```
 
+---
+
 ## Installing Volta
 
 1. Run the command, `curl https://get.volta.sh | bash` to begin installing Volta.
 
 ![installing volta](images/ss19.png)
 
+---
+
 ## Installing Node
 
 1. Run the command, `volta install node` to being installing node.
 
 ![installing node](images/ss20.png)
+
+---
 
 ## Getting Started with Node
 
@@ -337,6 +363,8 @@ You have successfully installed the Caddy web server.
 
 3. Move the Caddyfile to the server-one and server-two using the `rsync` command from before.
 
+---
+
 ## Creating the Service Files
 
 - Create the service file in you local terminal. We will be moving the files over to server-one and server-two later.
@@ -382,6 +410,8 @@ You have successfully installed the Caddy web server.
 
 5. Move both service files to both server-one and server-two by using the `rsync` command from before.
 
+---
+
 ## Moving Files
 
 - Note: The following steps must be completed in both server-one and server-two.
@@ -397,6 +427,8 @@ You have successfully installed the Caddy web server.
 2. Move the Caddyfile to the `/etc/caddy` directory by using the command, `sudo mv ./Caddyfile /etc/caddy`.
 
 ![moving the Caddyfile](images/ss26.png)
+
+---
 
 ## Starting the Service Files
 
