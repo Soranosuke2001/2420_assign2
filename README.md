@@ -18,6 +18,11 @@ Links:
 - [Installing Volta](#installing-volta)
 - [Installing Node](#installing-node)
 - [Getting Started with Node](#getting-started-with-node)
+- [Cpoying Files](#copying-files)
+- [Creating the Caddyfile](#creating-caddyfile)
+- [Creating the Service Files](#creating-the-service-files)
+- [Moving Files](#moving-files)
+- [Starting the Service Files](#starting-the-service-files)
 
 ---
 
