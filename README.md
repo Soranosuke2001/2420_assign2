@@ -294,12 +294,10 @@ You have successfully installed the Caddy web server.
 	```
 	// Require the framework and instantiate it
 	const fastify = require('fastify')({ logger: true })
-	const fs = require("fs")
 
 	// Declare a route
 	fastify.get('/api', async (request, reply) => {
-        	const readStream = fs.createReadStream('../html/index.html')
-        	await reply.type('text/html').send(readStream)
+        	return { hello: "server-x" }
 	})
 
 	// Run the server!
@@ -344,7 +342,9 @@ You have successfully installed the Caddy web server.
 
 - **Important Note:** You must complete the node setup procedures in the `/var/www/src` directory. You must also run the `source ~/.bashrc` command in order to apply the changes made.
 
-- Note: You should alter that the index.html slightly between server-one and server-two so that you are able to visually see that the load balancer is working properly.
+- Note: You should alter that the index.js slightly.
+- For server-one: "return { hello: "server-one" }"
+- For server-two: "return { hello: "server-two" }"
 
 ---
 
@@ -386,6 +386,7 @@ You have successfully installed the Caddy web server.
 	[Service]
 	Type=simple
 	User=sora
+        Group=sora
 	ExecStart=/home/sora/.volta/bin/node /var/www/src/index.js
 	Restart=on-failure
 
